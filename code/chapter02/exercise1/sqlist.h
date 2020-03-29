@@ -7,17 +7,19 @@ using namespace std;
 #define MaxSize 50
 typedef char ElemType;
 
-struct Sqlist
+struct SqList
 {
     /* data */
     ElemType data[MaxSize];
     int length;
 };
 
-void CreateList(Sqlist* &L, ElemType a[], int n);
-void InitalList(Sqlist* &L);
+void CreateList(SqList* &L, ElemType a[], int n);
+void InitalList(SqList* &L);
 
-void InsertList(Sqlist* &L, ElemType a);
+void InsertList(SqList* &L, ElemType a);
 
-void PrintList(Sqlist* &L);
+void PrintList(SqList* &L);
+
+bool isNullList(SqList* &L);
 #endif

@@ -1,6 +1,6 @@
 #include"sqlist.h"
 
-void CreateList(Sqlist* &L, ElemType a[], int n)
+void CreateList(SqList* &L, ElemType a[], int n)
 {
     if(a!=nullptr && n>=0)
     {
@@ -10,19 +10,25 @@ void CreateList(Sqlist* &L, ElemType a[], int n)
     }
 }
 
-void InitalList(Sqlist* &L)
+void InitalList(SqList* &L)
 {
     L->length=0;
 }
 
-void InsertList(Sqlist* &L, ElemType a)
+void InsertList(SqList* &L, ElemType a)
 {
     L->data[L->length]=a;
     L->length+=1;
 }
 
-void PrintList(Sqlist* &L)
+void PrintList(SqList* &L)
 {
 for(int i=0;i<L->length;i++)
     cout<<L->data[i]<<endl;
+    cout<<L->length<<endl;
+}
+
+bool isNullList(SqList* &L)
+{
+    return L==NULL;
 }
