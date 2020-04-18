@@ -3,6 +3,7 @@
 #include "sqlist.h"
 
 using namespace std;
+using namespace sqlist;
 
 // O(n),O(1)
 void partion2(SqList *&L);

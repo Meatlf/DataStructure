@@ -14,6 +14,8 @@ struct SqList
     int length;
 };
 
+namespace sqlist
+{
 // O(n)
 void CreateList(SqList *&L, ElemType a[], int n);
 
@@ -47,4 +49,5 @@ bool DeleteElementInList(SqList *&L, int location);
 
 // O(1)
 void FreeList(SqList *&L);
+} // namespace sqlist
 #endif

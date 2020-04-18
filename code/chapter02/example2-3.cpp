@@ -3,6 +3,7 @@
 #include "sqlist.h"
 
 using namespace std;
+using namespace sqlist;
 
 // O(n),O(1)
 void delnode1(SqList *&L, ElemType x);

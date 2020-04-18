@@ -1,7 +1,7 @@
 #include <string.h>
 #include "sqlist.h"
 
-void CreateList(SqList *&L, ElemType a[], int n)
+void sqlist::CreateList(SqList *&L, ElemType a[], int n)
 {
     L = (SqList *)malloc(sizeof(SqList));
     if (a != nullptr && n > 0)
@@ -12,26 +12,26 @@ void CreateList(SqList *&L, ElemType a[], int n)
     }
 }
 
-void InitalList(SqList *&L)
+void sqlist::InitalList(SqList *&L)
 {
     L = (SqList *)malloc(sizeof(SqList));
     L->length = 0;
 }
 
-void InsertList(SqList *&L, ElemType a)
+void sqlist::InsertList(SqList *&L, ElemType a)
 {
     L->data[L->length] = a;
     L->length += 1;
 }
 
-void PrintList(SqList *&L)
+void sqlist::PrintList(SqList *&L)
 {
     for (int i = 0; i < L->length; i++)
         cout << L->data[i] << " ";
     cout << endl;
 }
 
-bool GetElementViaLocation(SqList *&L, int location, ElemType &element)
+bool sqlist::GetElementViaLocation(SqList *&L, int location, ElemType &element)
 {
     if(location<1||location>L->length)
         return false;
@@ -39,7 +39,7 @@ bool GetElementViaLocation(SqList *&L, int location, ElemType &element)
     return true;
 }
 
-int GetLocationViaElement(SqList *&L, ElemType element)
+int sqlist::GetLocationViaElement(SqList *&L, ElemType element)
 {
     int i;
     for (i = 0; i < L->length; i++)
@@ -50,17 +50,17 @@ int GetLocationViaElement(SqList *&L, ElemType element)
     return 0;
 }
 
-bool IsNullList(SqList *&L)
+bool sqlist::IsNullList(SqList *&L)
 {
     return L == NULL;
 }
 
-int ListLength(SqList *&L)
+int sqlist::ListLength(SqList *&L)
 {
     return L->length;
 }
 
-bool InsertElementInList(SqList *&L, int location, ElemType element)
+bool sqlist::InsertElementInList(SqList *&L, int location, ElemType element)
 {
     if(location<1||location>L->length)
         return false;
@@ -71,7 +71,7 @@ bool InsertElementInList(SqList *&L, int location, ElemType element)
     return true;
 }
 
-bool DeleteElementInList(SqList *&L, int location)
+bool sqlist::DeleteElementInList(SqList *&L, int location)
 {
     if(location<1||location>L->length)
         return false;
@@ -82,7 +82,7 @@ bool DeleteElementInList(SqList *&L, int location)
     return true;
 }
 
-void FreeList(SqList *&L)
+void sqlist::FreeList(SqList *&L)
 {
     free(L);
 }

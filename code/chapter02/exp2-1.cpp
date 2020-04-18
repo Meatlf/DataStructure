@@ -2,6 +2,7 @@
 #include "sqlist.h"
 
 using namespace std;
+using namespace sqlist;
 
 int main()
 {
