@@ -4,7 +4,7 @@
 void CreateList(SqList *&L, ElemType a[], int n)
 {
     L = (SqList *)malloc(sizeof(SqList));
-    if (a != nullptr && n >= 0)
+    if (a != nullptr && n > 0)
     {
         for (int i = 0; i < n; i++)
             L->data[i] = a[i];
@@ -31,19 +31,23 @@ void PrintList(SqList *&L)
     cout << endl;
 }
 
-void PrintElementViaLocation(SqList *&L, int location)
+bool GetElementViaLocation(SqList *&L, int location, ElemType &element)
 {
-    cout << L->data[location - 1] << endl;
+    if(location<1||location>L->length)
+        return false;
+    element=L->data[location - 1];
+    return true;
 }
 
-int PrintLocationViaElement(SqList *&L, ElemType element)
+int GetLocationViaElement(SqList *&L, ElemType element)
 {
     int i;
     for (i = 0; i < L->length; i++)
     {
         if (L->data[i] - element == 0)
-            return i;
+            return i+1;
     }
+    return 0;
 }
 
 bool IsNullList(SqList *&L)
@@ -56,19 +60,26 @@ int ListLength(SqList *&L)
     return L->length;
 }
 
-void InsertElementInList(SqList *&L, int location, ElemType element)
+bool InsertElementInList(SqList *&L, int location, ElemType element)
 {
+    if(location<1||location>L->length)
+        return false;
     for (int i = L->length - 1; i > location - 2; i--)
         L->data[i + 1] = L->data[i];
-    L->data[location-1] = element;
+    L->data[location - 1] = element;
     L->length++;
+    return true;
 }
 
-void DeleteElementInList(SqList *&L, int location)
+bool DeleteElementInList(SqList *&L, int location)
 {
-    for (int i = location-1; i < L->length; i++)
+    if(location<1||location>L->length)
+        return false;
+    for (int i = location - 1; i < L->length; i++)
         L->data[i] = L->data[i + 1];
     L->data[L->length - 1] = '\0';
+    L->length--;
+    return true;
 }
 
 void FreeList(SqList *&L)
