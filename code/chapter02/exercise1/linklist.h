@@ -7,13 +7,6 @@ using namespace std;
 #define MaxSize 50
 typedef char ElemType;
 
-struct SqList
-{
-    /* data */
-    ElemType data[MaxSize];
-    int length;
-};
-
 typedef struct LNode
 {
     ElemType data;          // 存放元素值
