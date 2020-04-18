@@ -23,15 +23,12 @@
         },
 
         {
-            "name": "g++ - Build and debug active file",
+            "name": "(gdb) test_example2-3",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${command:cmake.launchTargetPath}",
-            "args": [],
-            "stopAtEntry": false,
+            "program": "${workspaceFolder}/build/test_exercise1",
+            //"processId": "${command:pickProcess}",
             "cwd": "${workspaceRoot}",
-            "environment": [],
-            "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -39,9 +36,7 @@
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "g++ build active file",
-            "miDebuggerPath": "/usr/bin/gdb"
+            ]
         }
     ]
 }
