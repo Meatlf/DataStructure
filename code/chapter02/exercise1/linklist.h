@@ -15,8 +15,15 @@ typedef struct LNode
 
 namespace linklist
 {
+// 建立单链表
+// 头插法
 // // O(n)
-// void CreateList(SqList *&L, ElemType a[], int n);
+void CreateListF(LinkNode *&L, ElemType a[], int n);
+
+// 建立单链表
+// 尾插法
+// // O(n)
+void CreateListR(LinkNode *&L, ElemType a[], int n);
 
 // O(1)
 void InitalList(LinkNode *&L);

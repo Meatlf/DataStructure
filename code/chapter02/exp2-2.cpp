@@ -3,6 +3,7 @@
 
 using namespace std;
 using namespace linklist;
+#define NUMBER 4
 
 int main()
 {
@@ -10,9 +11,17 @@ int main()
     cout << "sizeof(LinkNode) = " << sizeof(LinkNode) << endl;
 
     LinkNode *L;
-    // ElemType a[3] ={'a','b','c'};
-    // int n = 3;
-    // CreateList(L,a,n);
+
+    ElemType a[NUMBER] = {'a', 'b', 'c', 'd'};
+    int n = NUMBER;
+
+    cout << "头插法创建链表: ";
+    CreateListF(L, a, n);
+    PrintList(L);
+
+    cout << "尾插法创建链表: ";
+    CreateListR(L, a, n);
+    PrintList(L);
 
     InitalList(L);
 

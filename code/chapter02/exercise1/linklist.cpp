@@ -1,16 +1,36 @@
 #include <string.h>
 #include "linklist.h"
 
-// void linklist::CreateList(SqList *&L, ElemType a[], int n)
-// {
-//     L = (SqList *)malloc(sizeof(SqList));
-//     if (a != nullptr && n > 0)
-//     {
-//         for (int i = 0; i < n; i++)
-//             L->data[i] = a[i];
-//         L->length = n;
-//     }
-// }
+void linklist::CreateListF(LinkNode *&L, ElemType a[], int n)
+{
+    LinkNode *s;
+    L = (LinkNode *)malloc(sizeof(LinkNode));
+    L->next = NULL;
+
+    for (size_t i = 0; i < n; i++)
+    {
+        s = (LinkNode *)malloc(sizeof(LinkNode));
+        s->data = a[i];
+        s->next = L->next;
+        L->next = s;
+    }
+}
+
+void linklist::CreateListR(LinkNode *&L, ElemType a[], int n)
+{
+    LinkNode *p,*s;
+    L = (LinkNode *)malloc(sizeof(LinkNode));
+    p = L;
+
+    for (size_t i = 0; i < n; i++)
+    {
+        s = (LinkNode *)malloc(sizeof(LinkNode));
+        s->data = a[i];
+        p->next = s;
+        p = s;
+    }
+    p->next = NULL;
+}
 
 void linklist::InitalList(LinkNode *&L)
 {
@@ -156,7 +176,7 @@ void linklist::FreeList(LinkNode *&L)
 {
     LinkNode *pre = L, *p = L->next;
 
-    while (p!=NULL)
+    while (p != NULL)
     {
         free(pre);
         pre = p;
