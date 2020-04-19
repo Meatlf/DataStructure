@@ -20,135 +20,147 @@ void linklist::InitalList(LinkNode *&L)
 
 void linklist::InsertList(LinkNode *&L, ElemType e)
 {
-    LinkNode *headNode = L;
-    while (L->next != NULL)
+    LinkNode *p = L;
+    while (p->next != NULL)
     {
-        L = L->next;
+        p = p->next;
     }
 
     LinkNode *newNode = (LinkNode *)malloc(sizeof(LinkNode));
 
     newNode->data = e;
-    L->next = newNode;
-    L = headNode;
+    p->next = newNode;
 }
 
-void linklist::PrintList(LinkNode *&L)
+void linklist::PrintList(LinkNode *L)
 {
-    LinkNode *headNode = L;
-    while (L != NULL)
+    LinkNode *p = L->next;
+    while (p != NULL)
     {
-        cout << L->data << " ";
-        L = L->next;
+        cout << p->data << " ";
+        p = p->next;
     }
     cout << endl;
-    L = headNode;
 }
 
-bool linklist::GetElementViaLocation(LinkNode *&L, int location, ElemType &element)
+bool linklist::GetElementViaLocation(LinkNode *L, int location, ElemType &element)
 {
     if (L == NULL || location < 1)
         return false;
-    LinkNode *headNode = L;
+
+    LinkNode *p = L;
     int i = 0;
-    while (i < location && L->next != NULL)
+    while (i < location && p->next != NULL)
     {
-        L = L->next;
+        p = p->next;
         i++;
     }
-    element = L->data;
-    L = headNode;
-    return true;
+
+    if (p == NULL)
+        return false;
+    else
+    {
+        element = L->data;
+        return true;
+    }
 }
 
-int linklist::GetLocationViaElement(LinkNode *&L, ElemType element)
+int linklist::GetLocationViaElement(LinkNode *L, ElemType element)
 {
-    int i = 0;
-    LinkNode *headNode = L;
+    int i = 1;
+    LinkNode *p = L->next;
 
-    while (L != NULL)
+    while (p != NULL && p->data != element)
     {
-        if (L->data - element == 0)
-        {
-            L = headNode;
-            return i;
-        }
-        L = L->next;
+        p = p->next;
         i++;
     }
-    L = headNode;
-    return 0;
+    if (p == NULL)
+        return 0;
+    else
+        return i;
 }
 
-bool linklist::IsNullList(LinkNode *&L)
+bool linklist::IsNullList(LinkNode *L)
 {
     return L->next == NULL;
 }
 
-int linklist::ListLength(LinkNode *&L)
+int linklist::ListLength(LinkNode *L)
 {
-    int i = 0;
-    LinkNode *headNode = L;
-    while (L->next != NULL)
+    int n = 0;
+    LinkNode *p = L;
+    while (p->next != NULL)
     {
-        L = L->next;
-        i++;
+        p = p->next;
+        n++;
     }
-    L = headNode;
-    return i;
+    return n;
 }
 
 bool linklist::InsertElementInList(LinkNode *&L, int location, ElemType element)
 {
-    if (L == NULL || L->next == NULL || location < 1)
+    int i = 0;
+    LinkNode *p = L;
+
+    if (location < 1)
         return false;
 
-    int i = 0;
-    LinkNode *headNode = L;
-
-    while (L != NULL)
+    while (i < location - 1 && p != NULL)
     {
         i++;
-        if (i == location)
-        {
-            LinkNode *p0 = L->next;
-            LinkNode *newNode = (LinkNode *)malloc(sizeof(LinkNode));
-            L->next = newNode;
-            newNode->data = element;
-            newNode->next = p0;
-            L = headNode;
-            return true;
-        }
-        L = L->next;
+        p = p->next;
     }
-    L = headNode;
-    return false;
+
+    if (p == NULL)
+        return false;
+    else
+    {
+        LinkNode *newNode = (LinkNode *)malloc(sizeof(LinkNode));
+        newNode->data = element;
+        newNode->next = p->next;
+        p->next = newNode;
+        return true;
+    }
 }
 
-bool linklist::DeleteElementInList(LinkNode *&L, int location)
+bool linklist::DeleteElementInList(LinkNode *&L, int location, ElemType &element)
 {
-    if (L == NULL || L->next == NULL || location < 1)
+    int i = 0;
+    LinkNode *p = L, *q;
+
+    if (location < 1)
         return false;
 
-    int i = 0;
-    LinkNode *headNode = L;
-
-    while (L != NULL)
+    while (i < location - 1 && p != NULL)
     {
         i++;
-        if (i == location)
-        {
-            L->next = L->next->next;
-            L = headNode;
-            return true;
-        }
-        L = L->next;
+        p = p->next;
     }
-    L = headNode;
-    return false;
+
+    if (p == NULL)
+        return false;
+    else
+    {
+        q = p->next;
+        if (q == NULL)
+            return false;
+        element = q->data;
+        p->next = q->next;
+        free(q);
+        return true;
+    }
 }
 
 void linklist::FreeList(LinkNode *&L)
 {
-    free(L);
+    LinkNode *pre = L, *p = L->next;
+
+    while (p!=NULL)
+    {
+        free(pre);
+        pre = p;
+        p = pre->next;
+    }
+    free(pre);
 }

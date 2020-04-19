@@ -9,9 +9,9 @@ typedef char ElemType;
 
 typedef struct LNode
 {
-    ElemType data;          // 存放元素值
-    struct LNode *next;     // 指向后继结点
-} LinkNode;                 // 单链表结点类型
+    ElemType data;      // 存放元素值
+    struct LNode *next; // 指向后继结点
+} LinkNode;             // 单链表结点类型
 
 namespace linklist
 {
@@ -26,27 +26,27 @@ void InitalList(LinkNode *&L);
 void InsertList(LinkNode *&L, ElemType a);
 
 // O(n)
-void PrintList(LinkNode *&L);
+void PrintList(LinkNode *L);
 
 // O(n)
-bool GetElementViaLocation(LinkNode *&L, int location, ElemType &element);
+bool GetElementViaLocation(LinkNode *L, int location, ElemType &element);
 
 // O(n)
-int GetLocationViaElement(LinkNode *&L, ElemType element);
+int GetLocationViaElement(LinkNode *L, ElemType element);
 
 // O(1)
-bool IsNullList(LinkNode *&L);
+bool IsNullList(LinkNode *L);
 
 // O(n)
-int ListLength(LinkNode *&L);
+int ListLength(LinkNode *L);
 
 // O(n)
 bool InsertElementInList(LinkNode *&L, int location, ElemType element);
 
 // O(n)
-bool DeleteElementInList(LinkNode *&L, int location);
+bool DeleteElementInList(LinkNode *&L, int location, ElemType &element);
 
-// O(1)
-void FreeList(LinkNode *&L);  
-}
+// O(n)
+void FreeList(LinkNode *&L);
+} // namespace linklist
 #endif

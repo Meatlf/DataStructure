@@ -7,7 +7,7 @@ using namespace linklist;
 int main()
 {
     cout << "实验题2:实现单链表的各种基本运算的算法." << endl;
-    cout << "sizeof(SqList) = " << sizeof(SqList) << endl;
+    cout << "sizeof(LinkNode) = " << sizeof(LinkNode) << endl;
 
     LinkNode *L;
     // ElemType a[3] ={'a','b','c'};
@@ -48,9 +48,11 @@ int main()
 
     location = 4;
     cout << "删掉位置" << location << "上的元素,此时顺序表为: " << endl;
-    DeleteElementInList(L, location);
+    DeleteElementInList(L, location, e);
     PrintList(L);
 
     FreeList(L);
+    cout << "释放链表完成!" << endl;
+
     return 0;
 }
