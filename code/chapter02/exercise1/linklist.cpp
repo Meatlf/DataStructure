@@ -18,7 +18,7 @@ void linklist::CreateListF(LinkNode *&L, ElemType a[], int n)
 
 void linklist::CreateListR(LinkNode *&L, ElemType a[], int n)
 {
-    LinkNode *p,*s;
+    LinkNode *p,*s;                             // p始终指向链表的尾
     L = (LinkNode *)malloc(sizeof(LinkNode));
     p = L;
 

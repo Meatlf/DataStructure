@@ -17,6 +17,7 @@ add_executable(test_exercise1 exp2-1.cpp)
 add_executable(test_exercise2 exp2-2.cpp)
 add_executable(test_example2-3 example2-3.cpp)
 add_executable(test_example2-4 example2-4.cpp)
+add_executable(test_example2-6 example2-6.cpp)
 
 # 添加子目录
 add_subdirectory(exercise1)
@@ -26,3 +27,4 @@ target_link_libraries(test_exercise1 exercise1)
 target_link_libraries(test_exercise2 exercise1)
 target_link_libraries(test_example2-3 exercise1)
 target_link_libraries(test_example2-4 exercise1)
+target_link_libraries(test_example2-6 exercise1)
