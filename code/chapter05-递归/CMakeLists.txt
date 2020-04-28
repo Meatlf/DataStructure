@@ -11,7 +11,7 @@ set (CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -g")
 # add_executable(polynomial polynomial.cpp)
 
 # 添加头文件路径
-# include_directories("${PROJECT_SOURCE_DIR}/exercise1")
+include_directories("${PROJECT_SOURCE_DIR}/exercise1")
 
 # add_executable(test_exercise1 exp2-1.cpp)
 # add_executable(test_exercise2 exp2-2.cpp)
@@ -20,9 +20,10 @@ set (CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -g")
 # add_executable(test_example2-6 example2-6.cpp)
 # add_executable(test_example2-7 example2-7.cpp)
 add_executable(test_example5-2 example5-2.cpp)
+add_executable(test_example5-3 example5-3.cpp)
 
 # 添加子目录
-# add_subdirectory(exercise1)
+add_subdirectory(exercise1)
 
 # 添加库
 # target_link_libraries(test_exercise1 exercise1)
@@ -30,4 +31,4 @@ add_executable(test_example5-2 example5-2.cpp)
 # target_link_libraries(test_example2-3 exercise1)
 # target_link_libraries(test_example2-4 exercise1)
 # target_link_libraries(test_example2-6 exercise1)
-# target_link_libraries(test_example2-7 exercise1)
+target_link_libraries(test_example5-3 exercise1)
