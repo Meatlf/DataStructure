@@ -20,7 +20,7 @@ int main()
     while (str[i] != '\0')
     {
         sqstack::Push(st, str[i]);
-        cout << "Pop栈中的元素: " << str[i++] << endl;
+        cout << "Push栈中的元素: " << str[i++] << endl;
     }
     cout << "栈是否为空,空则输出1,非空则输出0: " << sqstack::StackEmpty(st) << endl;
     ElemType e;
