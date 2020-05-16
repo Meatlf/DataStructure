@@ -44,6 +44,9 @@ int main()
 
     CreateListR(L, a, 5);
 
+    cout << "打印当前链表的元素: ";
+    PrintList(L);
+
     if (IsNullList(L) == true)
         cout << "该链表是空链表!" << endl;
     else

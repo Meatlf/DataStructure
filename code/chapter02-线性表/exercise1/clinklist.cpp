@@ -86,7 +86,7 @@ bool clinklist::InsertList(CLinkNode *&L, int i, ElemType e)
 void clinklist::PrintList(CLinkNode *L)
 {
     CLinkNode *p = L->next;
-    while (p != NULL)
+    while (p->next != L)
     {
         cout << p->data << " ";
         p = p->next;
