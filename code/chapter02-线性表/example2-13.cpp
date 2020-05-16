@@ -1,16 +1,16 @@
 #include <iostream>
-#include "clinklist.h"
+#include "cdlinklist.h"
 
 using namespace std;
-using namespace clinklist;
+using namespace cdlinklist;
 
-bool Symm(CLinkNode *&L);
+bool Symm(CDLinkNode *&L);
 
-bool Symm(CLinkNode *&L)
+bool Symm(CDLinkNode *&L)
 {
     bool same = true;
-    CLinkNode *p = L->next;
-    CLinkNode *q = L->prior;
+    CDLinkNode *p = L->next;
+    CDLinkNode *q = L->prior;
 
     while (same)
     {
@@ -32,9 +32,9 @@ bool Symm(CLinkNode *&L)
 int main()
 {
     cout << "例2.13 判断循环链表的对称性." << endl;
-    cout << "sizeof(CLinkNode) = " << sizeof(CLinkNode) << endl;
+    cout << "sizeof(CDLinkNode) = " << sizeof(CDLinkNode) << endl;
 
-    CLinkNode *L;
+    CDLinkNode *L;
     // ElemType a[3] ={'a','b','c'};
     // int n = 3;
     // CreateList(L,a,n);

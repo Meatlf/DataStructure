@@ -1,17 +1,17 @@
 #include <string.h>
-#include "clinklist.h"
+#include "cdlinklist.h"
 
-void clinklist::CreateListF(CLinkNode *&L, ElemType a[], int n)
+void cdlinklist::CreateListF(CDLinkNode *&L, ElemType a[], int n)
 {
-    CLinkNode *s;
-    L = (CLinkNode *)malloc(sizeof(CLinkNode));
+    CDLinkNode *s;
+    L = (CDLinkNode *)malloc(sizeof(CDLinkNode));
     L->prior = L->next = NULL;
 
-    CLinkNode *p;
+    CDLinkNode *p;
 
     if (n > 0)
     {
-        s = (CLinkNode *)malloc(sizeof(CLinkNode));
+        s = (CDLinkNode *)malloc(sizeof(CDLinkNode));
         s->data = a[0];
 
         p = s;
@@ -21,7 +21,7 @@ void clinklist::CreateListF(CLinkNode *&L, ElemType a[], int n)
 
     for (size_t i = 1; i < n; i++)
     {
-        s = (CLinkNode *)malloc(sizeof(CLinkNode));
+        s = (CDLinkNode *)malloc(sizeof(CDLinkNode));
         s->data = a[i];
 
         s->next = L->next;
@@ -33,15 +33,15 @@ void clinklist::CreateListF(CLinkNode *&L, ElemType a[], int n)
     }
 }
 
-void clinklist::CreateListR(CLinkNode *&L, ElemType a[], int n)
+void cdlinklist::CreateListR(CDLinkNode *&L, ElemType a[], int n)
 {
-    CLinkNode *p, *s; // p始终指向链表的尾
-    L = (CLinkNode *)malloc(sizeof(CLinkNode));
+    CDLinkNode *p, *s; // p始终指向链表的尾
+    L = (CDLinkNode *)malloc(sizeof(CDLinkNode));
     p = L;
 
     for (size_t i = 0; i < n; i++)
     {
-        s = (CLinkNode *)malloc(sizeof(CLinkNode));
+        s = (CDLinkNode *)malloc(sizeof(CDLinkNode));
         s->data = a[i];
         p->next = s;
         s->prior = p;
@@ -51,16 +51,16 @@ void clinklist::CreateListR(CLinkNode *&L, ElemType a[], int n)
     p->next = L;
 }
 
-void clinklist::InitalList(CLinkNode *&L)
+void cdlinklist::InitalList(CDLinkNode *&L)
 {
-    L = (CLinkNode *)malloc(sizeof(CLinkNode));
+    L = (CDLinkNode *)malloc(sizeof(CDLinkNode));
     L->prior = L->next = NULL;
 }
 
-bool clinklist::InsertList(CLinkNode *&L, int i, ElemType e)
+bool cdlinklist::InsertList(CDLinkNode *&L, int i, ElemType e)
 {
     int j = 0;
-    CLinkNode *p = L;
+    CDLinkNode *p = L;
     if (i <= 0)
         return false;
         
@@ -72,7 +72,7 @@ bool clinklist::InsertList(CLinkNode *&L, int i, ElemType e)
     if (p == NULL)
         return false;
 
-    CLinkNode *s = (CLinkNode *)malloc(sizeof(CLinkNode));
+    CDLinkNode *s = (CDLinkNode *)malloc(sizeof(CDLinkNode));
 
     s->data = e;
     s->next = p->next;
@@ -83,9 +83,9 @@ bool clinklist::InsertList(CLinkNode *&L, int i, ElemType e)
     return true;
 }
 
-void clinklist::PrintList(CLinkNode *L)
+void cdlinklist::PrintList(CDLinkNode *L)
 {
-    CLinkNode *p = L->next;
+    CDLinkNode *p = L->next;
     while (p->next != L)
     {
         cout << p->data << " ";
@@ -94,12 +94,12 @@ void clinklist::PrintList(CLinkNode *L)
     cout << endl;
 }
 
-bool clinklist::GetElementViaLocation(CLinkNode *L, int location, ElemType &element)
+bool cdlinklist::GetElementViaLocation(CDLinkNode *L, int location, ElemType &element)
 {
     if (L == NULL || location < 1)
         return false;
 
-    CLinkNode *p = L;
+    CDLinkNode *p = L;
     int i = 0;
     while (i < location && p->next != NULL)
     {
@@ -116,10 +116,10 @@ bool clinklist::GetElementViaLocation(CLinkNode *L, int location, ElemType &elem
     }
 }
 
-int clinklist::GetLocationViaElement(CLinkNode *L, ElemType element)
+int cdlinklist::GetLocationViaElement(CDLinkNode *L, ElemType element)
 {
     int i = 1;
-    CLinkNode *p = L->next;
+    CDLinkNode *p = L->next;
 
     while (p != NULL && p->data != element)
     {
@@ -132,15 +132,15 @@ int clinklist::GetLocationViaElement(CLinkNode *L, ElemType element)
         return i;
 }
 
-bool clinklist::IsNullList(CLinkNode *L)
+bool cdlinklist::IsNullList(CDLinkNode *L)
 {
     return L->next == NULL;
 }
 
-int clinklist::ListLength(CLinkNode *L)
+int cdlinklist::ListLength(CDLinkNode *L)
 {
     int n = 0;
-    CLinkNode *p = L;
+    CDLinkNode *p = L;
     while (p->next != NULL)
     {
         p = p->next;
@@ -149,10 +149,10 @@ int clinklist::ListLength(CLinkNode *L)
     return n;
 }
 
-bool clinklist::InsertElementInList(CLinkNode *&L, int location, ElemType element)
+bool cdlinklist::InsertElementInList(CDLinkNode *&L, int location, ElemType element)
 {
     int i = 0;
-    CLinkNode *p = L;
+    CDLinkNode *p = L;
 
     if (location < 1)
         return false;
@@ -167,7 +167,7 @@ bool clinklist::InsertElementInList(CLinkNode *&L, int location, ElemType elemen
         return false;
     else
     {
-        CLinkNode *newNode = (CLinkNode *)malloc(sizeof(CLinkNode));
+        CDLinkNode *newNode = (CDLinkNode *)malloc(sizeof(CDLinkNode));
         newNode->data = element;
         newNode->next = p->next;
         p->next = newNode;
@@ -175,10 +175,10 @@ bool clinklist::InsertElementInList(CLinkNode *&L, int location, ElemType elemen
     }
 }
 
-bool clinklist::DeleteElementInList(CLinkNode *&L, int i, ElemType &element)
+bool cdlinklist::DeleteElementInList(CDLinkNode *&L, int i, ElemType &element)
 {
     int j = 0;
-    CLinkNode *p = L, *q;
+    CDLinkNode *p = L, *q;
 
     if (i < 1)
         return false;
@@ -210,9 +210,9 @@ bool clinklist::DeleteElementInList(CLinkNode *&L, int i, ElemType &element)
     }
 }
 
-void clinklist::FreeList(CLinkNode *&L)
+void cdlinklist::FreeList(CDLinkNode *&L)
 {
-    CLinkNode *pre = L, *p = L->next;
+    CDLinkNode *pre = L, *p = L->next;
 
     while (p != NULL)
     {
