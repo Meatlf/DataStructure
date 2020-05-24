@@ -5,45 +5,38 @@ using namespace std;
 using namespace linklist;
 #define NUMBER 4
 
-LinkNode *Divide(LinkNode *L, ElemType e);
+// 要点:
+// 1) 前插法: 较小的值头插法
+// 2) 后插法: 较大的值尾插法
+// 3) 所需创建的指针: 遍历节点p,链表尾节点r和头插法所需的防止"失联"的节点q.
+void Split(LinkNode *&L, ElemType x);
 
-LinkNode *Divide(LinkNode *L, ElemType e)
+void Split(LinkNode *&L, ElemType x)
 {
-    LinkNode *L0 = (LinkNode *)malloc(sizeof(LinkNode));
-    L0->next = NULL;
-
-    LinkNode *p = L->next;
-    LinkNode *q;
-    LinkNode *t;
-    LinkNode *s = (LinkNode *)malloc(sizeof(LinkNode));
-
-    s = p;
-    s->next = NULL;
-
-    L0->next = s;
-    t = s;
-
-    p = p->next;
+    LinkNode *p, *r, *q;
+    p = L->next;
+    L->next = NULL;
+    r = L;
 
     while (p != NULL)
     {
-        q = p->next;
-
-        if (p->data <= e)
+        if (p->data < x) // 较小的值头插法
         {
-            p->next = L0->next;
-            L0->next = p;
+            q = p->next;
+            p->next = L->next;
+            L->next = p;
+            if (p->next == NULL)
+                r = p;
+            p = q;
         }
         else
         {
-            s = p;
-            s->next = NULL;
-            t->next = s;
-            t = p;
+            r->next = p;
+            r = p;
+            p = p->next;
         }
-        p = q;
     }
-    return L0;
+    r->next = NULL;
 }
 
 int main()
@@ -83,26 +76,27 @@ int main()
         cout << "该链表不是空链表!" << endl;
 
     cout << "位置为3的元素为: ";
-    ElemType e;
-    GetElementViaLocation(L, 3, e);
-    cout << e << endl;
+    ElemType x;
+    GetElementViaLocation(L, 3, x);
+    cout << x << endl;
 
-    e = 'a';
-    cout << "字符" << e << "的位置为: " << GetLocationViaElement(L, e) << endl;
+    x = 'a';
+    cout << "字符" << x << "的位置为: " << GetLocationViaElement(L, x) << endl;
 
-    e = 'f';
+    x = 'f';
     int location = 3;
-    cout << "在位置为" << location << "的地方插入元素" << e << "之后的顺序表: " << endl;
+    cout << "在位置为" << location << "的地方插入元素" << x << "之后的顺序表: " << endl;
     InsertElementInList(L, location, 'f');
     PrintList(L);
 
     location = 4;
     cout << "删掉位置" << location << "上的元素,此时顺序表为: " << endl;
-    DeleteElementInList(L, location, e);
+    DeleteElementInList(L, location, x);
     PrintList(L);
 
-    LinkNode *L0 = Divide(L, 'e');
-    PrintList(L0);
+    Split(L, 'e');
+    cout << "将单链表按基准划分后的链表为: " << endl;
+    PrintList(L);
 
     FreeList(L);
     cout << "释放链表完成!" << endl;
